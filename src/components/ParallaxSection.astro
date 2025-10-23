@@ -1,0 +1,52 @@
+---
+// src/components/ParallaxSection.astro
+export interface Props {
+  imageUrl: string;
+  id?: string;
+}
+const { imageUrl, id } = Astro.props;
+---
+
+<section {id} class="parallax-section" style={`background-image: url(${imageUrl})`}>
+  <div class="parallax-content">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* This smooths the skew effect from your script */
+    transition: transform 0.1s linear;
+  }
+
+  .parallax-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 1.5rem 2.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+  }
+
+  @media (max-width: 900px) {
+    .parallax-section {
+      min-height: 300px;
+    }
+    .parallax-content {
+      font-size: 1.5rem;
+      padding: 1rem 1.5rem;
+    }
+  }
+</style>

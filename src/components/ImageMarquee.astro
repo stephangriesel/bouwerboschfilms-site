@@ -1,0 +1,58 @@
+---
+// src/components/ImageMarquee.astro
+const images = [
+  "https://picsum.photos/seed/astro1/400/300",
+  "https://picsum.photos/seed/astro2/400/300",
+  "https://picsum.photos/seed/astro3/400/300",
+  "https://picsum.photos/seed/astro4/400/300",
+  "https://picsum.photos/seed/astro5/400/300",
+];
+const allImages = [...images, ...images];
+---
+<div class="marquee-container">
+  <div class="marquee-track">
+    {allImages.map(src => (
+      <img src={src} alt="Scrolling gallery" class="marquee-image" />
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: fit-content;
+    animation: scroll 25s linear infinite;
+  }
+
+  .marquee-image {
+    width: 300px;
+    height: 220px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 900px) {
+    .marquee-image {
+      width: 200px;
+      height: 150px;
+    }
+  }
+</style>

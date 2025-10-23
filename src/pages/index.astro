@@ -1,16 +1,64 @@
 ---
-
+// src/pages/index.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import ParallaxSection from '../components/ParallaxSection.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Astro Parallax Site">
+	
+	<div class="content-block">
+		<h1>Astro Parallax Layout</h1>
+		<p>Scroll down to see the effect. The content on the left scrolls, while the right sidebar stays fixed with a single image.</p>
+	</div>
+
+	<ParallaxSection 
+	  id="about" 
+	  imageUrl="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200"
+	>
+		<h2>About Us</h2>
+	</ParallaxSection>
+
+	<div class="content-block">
+		<h3>Content Block</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	</div>
+
+	<ParallaxSection 
+	  id="services"
+	  imageUrl="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1200"
+	>
+		<h2>Our Services</h2>
+	</ParallaxSection>
+
+	<div class="content-block">
+		<h3>More Content</h3>
+		<p>Praesent elementum facilisis leo vel fringilla est. Vestibulum morbi blandit cursus risus at ultrices.</p>
+	</div>
+
+	<ParallaxSection 
+	  id="contact"
+	  imageUrl="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200"
+	>
+		<h2>Contact</h2>
+	</ParallaxSection>
+
+</MainLayout>
+
+<style>
+	.content-block {
+		padding: 3rem 2rem;
+		background-color: #2a2a2a;
+		color: #f4f4f4;
+		font-size: 1.1rem;
+		line-height: 1.7;
+	}
+	.content-block h1 {
+		color: #ff5722;
+	}
+
+	@media (max-width: 900px) {
+		.content-block {
+			padding: 2rem 1.5rem;
+		}
+	}
+</style>
